@@ -1,0 +1,39 @@
+extends ../../layouts/default
+
+block content
+    div(class='container')
+        div(class='panel panel-primary')
+    div(class='panel-heading')
+        | Tickets
+    div(class='panel-body')
+        p='These are the list of tickets in the system'
+
+    table(class='table table-striped')
+        each ticket in data.tickets
+            tr
+                td
+                    div(class='col-md-1')
+                        span(class='label label-info pull-right') 
+                            | #{ticket.status}
+                    a(href=ticket.url)
+                        b 
+                            | #{ticket.title}
+
+                    ul(class='ticket-meta') 
+                        li
+                            small='Status'
+                            a(href='', rel="tag"): b 
+                               | #{ticket.status}
+                        li
+                            small='Priority'
+                            a(href='', rel="tag"): b 
+                               | #{ticket.priority}
+                        li
+                            small='Category'
+                            a(href='', rel="tag"): b 
+                               | #{ticket.category}
+                        li
+                            small='Last Updated'
+                                abbr(class='last-updated')
+                                    | #{ticket._.createdAt.format('Do MMMM YYYY')}    
+    div(class='panel-footer')

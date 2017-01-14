@@ -36,6 +36,16 @@ exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
 
+	app.get('/tickets', routes.views.tickets.ticketlist);
+	
+	app.get('/tickets/:ticketslug', routes.views.tickets.singleticket);
+
+	
+
+	app.get('/tickets/:ticketslug', function(req, res) {
+		res.send('We will show a specific ticket that has the slug ' + req.params.ticketslug);
+	});
+
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 
